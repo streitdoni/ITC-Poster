@@ -7,6 +7,9 @@
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
+
+\newcommand{\MANET}{MANET}
+\newcommand{\QOS}{QoS}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
@@ -43,9 +46,9 @@ With the rapid growth of connectivity, the information exchange within and betwe
 increases continuously. The security of those communication channels is often insufficient to 
 distribute confidential information. Consequently, to ensure trustworthiness, integrity and 
 confidentiality, the data has to be encrypted accordingly. In order to realize secure communication 
-in a MANET manner, the participants must share a group key to decrypt and encrypt their 
+in a \MANET{} manner, the participants must share a group key to decrypt and encrypt their 
 message exchange. This common secret must be distributed secure. The management of encrypted group 
-communication in MANETs is challenging task because the participants rely on limited hardware and 
+communication in \MANET{} is challenging task because the participants rely on limited hardware and 
 bandwidth resources. Furthermore, the dynamic changing group composition generates additional overhead.
 Considering these challenging conditions, we introduce a central organized GKM concept which 
 combines the rekeying and key distribution functionalities of existing protocols to reduce key 
@@ -58,31 +61,24 @@ component, formatting, style, styling, insert
 \end{IEEEkeywords}
 
 \section{Introduction}
-Transmitting huge amouts of data in Mobile Ad-Hoc Networks (MANET) is a challenging task due i.e. to the shared medium, dynamic changing topology and arising bottlenecks. Especially video or audio streams are subject to certain Quality of Service (QoS) requirements. Voice over IP (VoIP) for instance relies on a delay less than $250ms$ and a video stream should not have a packet loss rate more than $5\%$. MANETs are network structures without a central infrastructure. Hence, every participating node acts as router and forwards packets towards destinations. Consequently, a route through the topology is established depending on the constellation of nodes.\\
-Several reactive and proactive routing protocols exist which implement individual path discovery processes. AODV broadcasts the whole notwork with the objective to find the fastest route towards the requested destination. Typically, the received RREP proposes the route with least intermediate nodes and each relay usually has low network utilization. Another reactive routing protocol is DSR. The route discovery process OLSR maintains   and routing protocols e.g. AODV can be assumed, that the proposed route is  leads top Utilization, available slot time are beside the position of the node caracteristics of  of the shared medium are tilization, Beside the position of a 
-\section{Ease of Use}
+Transmitting huge amounts of data in Mobile Ad-Hoc Networks (MANET) is a challenging task due to i.e. the shared medium, dynamic changing topology and arising bottlenecks. Especially video or audio streams are particularly worthy to mention because they are subject to certain Quality of Service (QoS) requirements. Voice over IP (VoIP) for instance relies on a delay less than $250ms$ and a video stream should not have a packet loss rate more than $5\%$. \MANET{s} are network structures without a central infrastructure. Hence, every participating node acts as router and forwards packets towards destinations. Consequently, a route through the topology is established depending on the constellation of nodes.  In an \MANET{} structure with high utilization, several situations can appear during transmission. Different video streams may be routed across a particular node. A path may be chosen twice if the same destination node is request the packets. \QOS{} will suffer during situations and in worse case result in a denial of service. To encounter such constellation stressed areas have to be detected and avoided during path discovery process.\\
+%\begin{figure}[h]\label{fig:Example}
+%\includegraphics[width=0.99\linewidth]{Figures/StressedAreaAvoide.pdf}
+%\caption{Example of a figure caption.}
+%\label{fig}
+%\end{figure}
+Several reactive and proactive routing protocols exist which implement individual path discovery processes. AODV broadcasts the whole notwork with the objective to find the fastest route towards the requested destination. Typically, the received RREP proposes the route with least intermediate node. The route discovery algorithm of DSR is almost equal to AODV. Participating nodes flood the network with a RREQ containing an id, the source and the destination. Every node which forwards the RREQ records it's address in the address. If an intermediate node has a valid route towards the destination or if the destination receives the RREQ, a RREP is transmitted according to the reverse list of the RREQ to the originator of the RREQ.\\
+% The route discovery process OLSR maintains   and routing protocols e.g. AODV can be assumed, that the proposed route is  leads top Utilization, available slot time are beside the position of the node caracteristics of  of the shared medium are tilization, Beside the position of a 
+In order to identify and avoid stressed areas in the \MANET{} topology every node is aware of its own utilization and treats an incoming RREQ accordingly. Therefore, each node monitors the consuming bandwidth of each forwarded route. Furthermore the available slot time of the Wlan Nic is recorded during transmission. This two indications are the basis of the decision which influences the treatment of an incoming RREQ. Each RREQ is extended with additional network capacity requirements  (bandwidth and required slot time). In case of a node receives a RREQ, the conditions of the request are compared to the own monitored utilization. Depending on the result, the request is either dropped, queued or forwarded. A stressed node will for instance drop or queue a received request. Consequently, areas with huge network load are avoided.\\
+The reminder of this paper ss organized as follows. Related work is discussed in \ref{sec:RelatedWork}. In section \ref{sec:CapBasedRoutingAlgorithm}, the proposed capacity based route discovery algorithm is introduced. The section \ref{sec:EarlyResults} discusses early results followed by a conclusion and further work in section \ref{sec:ConclusionFurtherWork}.
 
-\subsection{Maintaining the Integrity of the Specifications}
+\section{Related Work}\label{sec:RelatedWork}
 
-The IEEEtran class file is used to format your paper and style the text. All margins, 
-column widths, line spaces, and text fonts are prescribed; please do not 
-alter them. You may note peculiarities. For example, the head margin
-measures proportionately more than is customary. This measurement 
-and others are deliberate, using specifications that anticipate your paper 
-as one part of the entire proceedings, and not as an independent document. 
-Please do not revise any of the current designations.
+\section{Capacity Based Route Discovery Algorithm}\label{sec:CapBasedRoutingAlgorithm}
 
-\section{Prepare Your Paper Before Styling}
-Before you begin to format your paper, first write and save the content as a 
-separate text file. Complete all content and organizational editing before 
-formatting. Please note sections \ref{AA}--\ref{SCM} below for more information on 
-proofreading, spelling and grammar.
+\section{Early Results}\label{sec:EarlyResults}
 
-Keep your text and graphic files separate until after the text has been 
-formatted and styled. Do not number text heads---{\LaTeX} will do that 
-for you.
-
-\subsection{Abbreviations and Acronyms}\label{AA}
+\subsection{Conclusion and further work}\label{sec:ConclusionFurtherWork}
 Define abbreviations and acronyms the first time they are used in the text, 
 even after they have been defined in the abstract. Abbreviations such as 
 IEEE, SI, MKS, CGS, ac, dc, and rms do not have to be defined. Do not use 
