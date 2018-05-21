@@ -14,7 +14,7 @@
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-\title{Paper Title*\\
+\title{Network Capacity Based Route Discovery Algorithm\\
 {\footnotesize \textsuperscript{*}Note: Sub-titles are not captured in Xplore and
 should not be used}
 \thanks{Identify applicable funding agency here. If none, delete this.}
@@ -74,11 +74,43 @@ The reminder of this paper ss organized as follows. Related work is discussed in
 
 \section{Related Work}\label{sec:RelatedWork}
 
-\section{Capacity Based Route Discovery Algorithm}\label{sec:CapBasedRoutingAlgorithm}
+\section{Approach of Capacity Based Route Discovery}\label{sec:CapBasedRoutingAlgorithm}
+To realize network capacity based routing every node of the \MANET{} has to be equipped on the one hand with a local network load monitoring functionality and on the other hand with a decision matrix weather the RREQ has to be dropped, queued or instantly forwarded. The following two subsections are divided into the monitoring concept and the decision matrix.
+	
+	\subsection{Monitoring Local Capacities}
+	To analyze the local traffic overhead of each node, specific IPv4 header information of every routing load and payload packet is recorded for a given time span. Therefore, every node maintains information of routes $R=\{r_{0}\ldots r_{n}\}$ which are forwarded. Each route $r$ is identified by the source and destination IP address $Id_{r} = (ip_{src},ip_{dest})$. In addition each route maintains a queue containing the transmission overhead of the packets $O = \{o_{1}\ldots o_{n}\}$ in bytes where $n$ is the number of packets received during a defined time span $t$. In case of the received packet is a payload, the overhead is defined as follows $o_{n}=pl_{size} + ACK_{size}+hdr_{size}$. If the received packet is routing load and $ip_{dest}$ is a broadcast address the overhead is composed of $o_{n}=pl_{size} + hdr_{size}$. If the destination address of the routing load packet is unicast the overhead is determined equal to a payload packet.\\
+	To calculate the available slot time of the Nic per participating node,  
+	
+	\subsection{Determine Local Network Utilization}
+	If a node receives a RREQ from neighbor node, it first determines the required transmission conditions $C = (bw,st)$ of the request where $bw$ is the minimum bandwidth required to transmit the payload and $st$ is the minimum time the Wlan Nic has to be available for transmission in a given time span $t$. The next step is to calculate the available bandwidth. Due to the fact that 80211 relies on wireless communication participating nodes must share their channel capacity within node in transmission range. As a result, the throughput of a node depends theoretically on the number of node which the intermediate node exchanges data. If for instance a node is part of a single route, it must share the capacity with two other nodes. Consequently, the transmitting and receiving node can interfere the intermediate node. The available bandwidth of a node is determined see equation \ref{eq:DeterminOveralOverhead}. 
+	\begin{equation}\label{eq:DeterminOveralOverhead}
+		bw_{r} = \frac{C}{R+1} - \sum_{1}^{R} O_{R}
+	\end{equation}
+	
+%	\begin{algorithmic} 
+%		\REQUIRE Node received packet $pkt$
+%%		\STATE $y \leftarrow 1$
+%		\IF{$pkt == rlpkt$}
+%		\STATE $RL \leftarrow determinRL(pkt)$
+%		\STATE $N \leftarrow -n$
+%		\ELSE
+%		\STATE $X \leftarrow x$
+%		\STATE $N \leftarrow n$
+%		\ENDIF
+%		\WHILE{$N \neq 0$}
+%		\IF{$N$ is even}
+%		\STATE $X \leftarrow X \times X$
+%		\STATE $N \leftarrow N / 2$
+%		\ELSE[$N$ is odd]
+%		\STATE $y \leftarrow y \times X$
+%		\STATE $N \leftarrow N - 1$
+%		\ENDIF
+%		\ENDWHILE
+%	\end{algorithmic}
 
 \section{Early Results}\label{sec:EarlyResults}
 
-\subsection{Conclusion and further work}\label{sec:ConclusionFurtherWork}
+\section{Conclusion and further work}\label{sec:ConclusionFurtherWork}
 Define abbreviations and acronyms the first time they are used in the text, 
 even after they have been defined in the abstract. Abbreviations such as 
 IEEE, SI, MKS, CGS, ac, dc, and rms do not have to be defined. Do not use 
